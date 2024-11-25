@@ -1,29 +1,32 @@
-import Link from 'next/link'
-import { Lock } from 'lucide-react'
-import { Button } from './ui/button'
+import Link from "next/link";
+import { Lock } from "lucide-react";
+import { Button } from "./ui/button";
 
 const footerLinks = {
   company: [
-    { name: 'À propos', href: '/about' },
-    { name: 'Projets', href: '/projects' },
-    { name: 'Stack', href: '/stack' },
+    { name: "À propos", href: "/about" },
+    { name: "Projets", href: "/projects" },
+    { name: "Stack", href: "/stack" },
   ],
   resources: [
-    { name: 'Documentation', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Status', href: '#' },
+    {
+      name: "Documentation",
+      href: "https://github.com/Logipek/Personnal-portfolio/blob/main/README.md",
+    },
+    { name: "Blog", href: "/projects" },
+    { name: "Status", href: "https://status.hugo-damion.fr" },
   ],
   legal: [
-    { name: 'Politique de confidentialité', href: '#' },
-    { name: 'Mentions légales', href: '#' },
-    { name: 'CGU', href: '#' },
+    { name: "Politique de confidentialité", href: "/pc" },
+    { name: "Mentions légales", href: "/ml" },
+    { name: "CGU", href: "/cgu" },
   ],
   social: [
-    { name: 'GitHub', href: 'https://github.com/Logipek' },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/hugo-damion' },
-    { name: 'Twitter', href: 'https://twitter.com/hugo-damion' },
+    { name: "GitHub", href: "https://github.com/Logipek" },
+    { name: "LinkedIn", href: "https://linkedin.com/in/hugo-damion" },
+    { name: "Twitter", href: "https://twitter.com/hugo-damion" },
   ],
-}
+};
 
 export default function Footer() {
   return (
@@ -35,7 +38,8 @@ export default function Footer() {
               Hugo.
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              Développeur Full Stack passionné par la création d&apos;expériences web innovantes.
+              Développeur Full Stack passionné par la création
+              d&apos;expériences web innovantes.
             </p>
           </div>
           <div>
@@ -43,7 +47,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {link.name}
                   </Link>
                 </li>
@@ -55,7 +62,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {link.name}
                   </Link>
                 </li>
@@ -67,7 +77,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {link.name}
                   </Link>
                 </li>
@@ -82,5 +95,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -75,12 +75,29 @@ body {
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
 .glow-effect {
   position: absolute;
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle at center, 
+  background: radial-gradient(
+    circle at center,
     hsl(var(--primary) / 0.15) 0%,
     transparent 70%
   );
@@ -99,7 +116,8 @@ body {
 .glow-2 {
   bottom: -400px;
   right: -200px;
-  background: radial-gradient(circle at center, 
+  background: radial-gradient(
+    circle at center,
     hsl(280, 83%, 53%, 0.15) 0%,
     transparent 70%
   );
@@ -112,7 +130,8 @@ body {
   transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle at center, 
+  background: radial-gradient(
+    circle at center,
     hsl(190, 83%, 53%, 0.1) 0%,
     transparent 70%
   );
@@ -120,7 +139,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) scale(1);
   }
   50% {
@@ -129,7 +149,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1);
   }
@@ -163,54 +184,59 @@ body {
 .hero-gradient {
   position: absolute;
   inset: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, hsl(var(--primary) / 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, hsl(280, 83%, 53%, 0.15) 0%, transparent 50%);
+  background: radial-gradient(
+      circle at 20% 20%,
+      hsl(var(--primary) / 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      hsl(280, 83%, 53%, 0.15) 0%,
+      transparent 50%
+    );
   will-change: opacity;
 }
 
 .gradient-border {
   position: relative;
   border-radius: var(--radius);
-  background: linear-gradient(to bottom right, hsl(var(--primary) / 0.1), transparent);
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--primary) / 0.1),
+    transparent
+  );
   padding: 1px;
 }
 
 .gradient-border::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: var(--radius);
   padding: 1px;
-  background: linear-gradient(to bottom right, hsl(var(--primary) / 0.5), transparent);
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--primary) / 0.5),
+    transparent
+  );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes music-bar {
+  0%,
+  100% {
+    height: 0.75rem;
+  }
+  50% {
+    height: 1.5rem;
+  }
 }
 
-/* Mobile menu backdrop transition */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
-}
-
-.mobile-menu-enter {
-  animation: fadeIn 0.3s ease-out, slideIn 0.3s ease-out;
-}
-
-.mobile-menu-exit {
-  animation: fadeIn 0.3s ease-out reverse, slideIn 0.3s ease-out reverse;
+.animate-music-bar {
+  animation: music-bar 1.2s ease-in-out infinite;
 }
 
 @supports (backdrop-filter: blur(1px)) {
@@ -219,7 +245,6 @@ body {
   }
 }
 
-/* Smooth scroll behavior */
 .smooth-scroll {
   scroll-behavior: smooth;
   overflow-y: auto;

@@ -1,29 +1,33 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
-import Navigation from '@/components/navigation'
-import { cn } from '@/lib/utils'
-import { useSmooth, useScrollRestoration } from '@/hooks/use-scroll'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navigation from "@/components/navigation";
+import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/react";
+import { useSmooth, useScrollRestoration } from "@/hooks/use-scroll";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Hugo. | Developpeur Full-Stack',
-  description: 'Développeur Full Stack passionné par la création d\'expériences web innovantes.',
-}
+  title: "Hugo. | Developpeur Full-Stack",
+  description:
+    "Développeur Full Stack passionné par la création d'expériences web innovantes.",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={cn(
-        inter.className,
-        'min-h-screen bg-background antialiased selection:bg-primary/20'
-      )}>
+      <body
+        className={cn(
+          inter.className,
+          "min-h-screen bg-background antialiased selection:bg-primary/20"
+        )}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -37,13 +41,12 @@ export default function RootLayout({
             <div className="blur-layer" />
             <div className="relative z-10">
               <Navigation />
-              <main className="relative">
-                {children}
-              </main>
+              <main className="relative">{children}</main>
             </div>
           </div>
+          <Analytics/>
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

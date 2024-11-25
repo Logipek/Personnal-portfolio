@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Code2, Home, Layers, Send, Menu, X } from 'lucide-react'
-import SpotifyNowPlaying from './spotify-now-playing'
-import { ThemeSwitcher } from './theme-switcher'
-import { Button } from './ui/button'
-import { cn } from '@/lib/utils'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Code2, Home, Layers, Send, Menu, X } from "lucide-react";
+import DiscordNowPlaying from "./discord-now-playing";
+import { ThemeSwitcher } from "./theme-switcher";
+import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 export default function Navigation() {
-  const pathname = usePathname()
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: 'Accueil', href: '/', icon: Home },
-    { name: 'Projets', href: '/projects', icon: Code2 },
-    { name: 'Stack', href: '/stack', icon: Layers },
-    { name: 'Contact', href: '/contact', icon: Send },
-  ]
+    { name: "Accueil", href: "/", icon: Home },
+    { name: "Projets", href: "/projects", icon: Code2 },
+    { name: "Stack", href: "/stack", icon: Layers },
+    { name: "Contact", href: "/contact", icon: Send },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    setIsMobileMenuOpen(false)
-  }, [pathname])
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
-    <header 
+    <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
-        isScrolled 
-          ? "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60" 
+        isScrolled
+          ? "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60"
           : "bg-transparent",
         isMobileMenuOpen && "bg-background"
       )}
@@ -50,18 +50,19 @@ export default function Navigation() {
             Hugo.
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden sm:block">
             <div className="flex items-center space-x-8">
               {navigation.map((item) => {
-                const isActive = pathname === item.href
-                const Icon = item.icon
+                const isActive = pathname === item.href;
+                const Icon = item.icon;
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     className={`relative flex items-center space-x-1 text-sm font-medium transition-colors ${
-                      isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+                      isActive
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -74,18 +75,17 @@ export default function Navigation() {
                       />
                     )}
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
 
           <div className="flex items-center space-x-4">
             <div className="hidden sm:block">
-              <SpotifyNowPlaying />
+              <DiscordNowPlaying />
             </div>
             <ThemeSwitcher />
-            
-            {/* Mobile Menu Button */}
+
             <Button
               variant="ghost"
               size="icon"
@@ -102,20 +102,19 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="sm:hidden bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-primary/10"
           >
             <div className="space-y-1 px-4 pb-4 pt-2">
               {navigation.map((item) => {
-                const isActive = pathname === item.href
-                const Icon = item.icon
+                const isActive = pathname === item.href;
+                const Icon = item.icon;
                 return (
                   <motion.div
                     key={item.name}
@@ -127,8 +126,8 @@ export default function Navigation() {
                       href={item.href}
                       className={cn(
                         "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                        isActive 
-                          ? "bg-primary/10 text-primary" 
+                        isActive
+                          ? "bg-primary/10 text-primary"
                           : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
                       )}
                     >
@@ -136,7 +135,7 @@ export default function Navigation() {
                       {item.name}
                     </Link>
                   </motion.div>
-                )
+                );
               })}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -144,12 +143,12 @@ export default function Navigation() {
                 transition={{ duration: 0.3, delay: 0.2 }}
                 className="pt-2"
               >
-                <SpotifyNowPlaying />
+                <DiscordNowPlaying />
               </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
-  )
+  );
 }
